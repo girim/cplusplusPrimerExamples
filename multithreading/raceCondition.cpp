@@ -1,6 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <mutex>
 
 class Wallet
 {
@@ -10,11 +11,14 @@ public:
 
 	void addMoney(int money)
 	{
+		//mutex_.lock();
+		std::lock_guard<std::mutex> lockGuard(mutex_);
 		for(int index = 0; index < money; ++index)
 		{
 			//std::cout << "Adding money: " << index << std::endl;
 			money_++;
 		}
+		//mutex_.unlock();
 	}
 
 	int getMoney()
@@ -24,7 +28,7 @@ public:
 
 private:
 	int money_;
-
+	std::mutex mutex_;
 };
 
 
@@ -58,6 +62,9 @@ int main ()
 		{
 			std::cout << "Error at count: " << index << " Money at the wallet: " << val << std::endl;
 		}		
+		}else{
+			//std::cout << "Reached 10000 .... " << std::endl;
+		}
 	}
 
 	return 0;
