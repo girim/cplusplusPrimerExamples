@@ -86,8 +86,9 @@ int main(int argc, char const *argv[])
 	std::cout << "maxWithCpp11{int, double}: " << typeid(maxWithCpp11(4.66, 12)).name() << std::endl;
 	std::cout << "maxWithCommonType{int, double}: " << typeid(maxWithCommonType(18, 1.0)).name() << std::endl;
 	std::cout << "maxWithCommonType{int, char}: " << typeid(maxWithCommonType(1, 'a')).name() << std::endl;
-	std::cout << "maxWithDefaultRT{char, double}: " << typeid(maxWithDefaultRT('g', 9.6)).name() << std::endl;
 
+	/*Setting default value for RT we can call functions without specifying 'return type' explicitly*/
+	std::cout << "maxWithDefaultRT{char, double}: " << typeid(maxWithDefaultRT('g', 9.6)).name() << std::endl;
 	std::cout << "maxWithDefaultRTCommonType{int, char}: " << typeid(maxWithDefaultRTCommonType(1, 4.5)).name() << std::endl;
 	return 0;
 }
