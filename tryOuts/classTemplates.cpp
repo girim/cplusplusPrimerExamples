@@ -3,6 +3,7 @@
 #include "stack.hpp"
 #include "specializedStack.hpp"
 #include "partialSpecializedStack.hpp"
+#include "partialSpecializationWithMultiParams.hpp"
 
 int main()
 {
@@ -49,6 +50,18 @@ int main()
     int &refToNumber2 = number2;
     int &refToNumber3 = number3; 
     //Stack<int&> refNumbers;
+
+    MyClass<int, float> intFloat;
+    MyClass<double, double> doubleDouble;
+    MyClass<int, char> intChar;
+    MyClass<float*, float*> floats;
+    MyClass<int*, float*> intFloatPointers;
+
+    std::cout << "intFloat: " << intFloat.getName() << std::endl;
+    std::cout << "doubleDouble: " << doubleDouble.getName() << std::endl;
+    std::cout << "intChar: " << intChar.getName() << std::endl;
+    std::cout << "floatPointers: " << floats.getName() << std::endl;
+    std::cout << "intFloatPointers: " << intFloatPointers.getName() << std::endl;
 
     return 0;
 }
