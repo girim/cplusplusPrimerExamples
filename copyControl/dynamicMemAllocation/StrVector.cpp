@@ -102,6 +102,6 @@ int main()
     StrVector strVect_2 = strVect;
     strVect_1 = strVect_2;
     std::cout <<"capacity: " << strVect.size() << std::endl;
+    
     return 0;
-
 }
