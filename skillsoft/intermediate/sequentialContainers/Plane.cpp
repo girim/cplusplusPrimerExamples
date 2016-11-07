@@ -8,14 +8,14 @@ Plane::~Plane()
 
 Plane::Plane(const Plane& plane)
 {
-    std::cout << "Plane copy-constructor" << std::endl;
+    //std::cout << "Plane copy-constructor" << std::endl;
     this->length_ =  plane.length_;
     this->width_  =  plane.width_;
 }
 
 Plane& Plane::operator=(const Plane& plane)
 {
-    std::cout << "Plane copy-assignment operator" << std::endl;
+    //std::cout << "Plane copy-assignment operator" << std::endl;
     this->length_ =  plane.length_;
     this->width_  =  plane.width_;
             
@@ -24,7 +24,7 @@ Plane& Plane::operator=(const Plane& plane)
 
 Plane::Plane(Plane&& plane) noexcept
 {
-    std::cout << "Plane move-constructor" << std::endl;
+    //std::cout << "Plane move-constructor" << std::endl;
     this->length_ = plane.length_;
     this->width_  = plane.width_;
 }
