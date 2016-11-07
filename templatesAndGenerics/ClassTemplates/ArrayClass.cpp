@@ -30,7 +30,6 @@ Array<T>::~Array()
 	std::cout << "Class destroyed...." << std::endl;
 }
 
-
 template<typename T>
 void Array<T>::print()
 {

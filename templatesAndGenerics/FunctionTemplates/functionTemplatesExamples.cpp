@@ -7,6 +7,21 @@ T findMax(const T& left, const T& right)
 	return (left > right) ? left : right; 
 }
 
+//Example of usage of non-type template parameters
+template<typename T, int max>
+T findMin(T arr[], int size)
+{
+	int tmpMin = max;
+	for(int index = 0; index < size; index++)
+	{
+		if(arr[index] < tmpMin)
+		{
+			tmpMin = arr[index]; 
+		}
+	}
+
+	return tmpMin;
+}
 
 class Circle
 {
@@ -55,6 +70,16 @@ int main()
 
 	std::cout << "Big circle by area is(Circle_A, Circle_B): " << \
 		findMax(circleOne, circleTwo).getCircleName() << std::endl; 
+
+	int arrOne[] = {10,20,30,40};
+	int sizeOfArrOne = sizeof(arrOne)/ sizeof(arrOne[0]);
+
+	char arrTwo[] = {1,2,4};
+	int sizeOfArrTwo =  sizeof(arrTwo) / sizeof(arrTwo[0]);
+
+	std::cout << "Minimum value in arrOne is : " << findMin<int, 1000>(arrOne, sizeOfArrOne) << std::endl;
+	std::cout << "Minimum value in arrTwo is : " << static_cast<int>(findMin<char, 256>(arrTwo, sizeOfArrTwo)) << std::endl;
+
 	return 0;
 }
 
