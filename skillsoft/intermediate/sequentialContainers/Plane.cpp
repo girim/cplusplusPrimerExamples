@@ -3,7 +3,7 @@
 Plane::Plane(double length, double width) : length_(length), width_(width) {};
 Plane::~Plane()
 {
-    std::cout << "Plane destroyed " << std::endl;
+    //std::cout << "Plane destroyed " << std::endl;
 };
 
 Plane::Plane(const Plane& plane)

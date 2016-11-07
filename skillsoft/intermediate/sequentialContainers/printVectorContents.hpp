@@ -9,6 +9,8 @@ void printVectorContents(const T& vec, std::string name)
 {
     for(const auto& element : vec)
         std::cout << "Element of " << name << " is: " << element << std::endl;
+
+    std::cout << std::endl;
 }
 
 
