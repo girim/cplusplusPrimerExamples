@@ -16,11 +16,53 @@ class Plane
         double getAreaOfPlane() const;
         double getLength() const;
         double getWidth() const;
-
+        
+        friend std::ostream& operator<<(std::ostream& os, const Plane& plane);
 
     private:
         double length_;
         double width_;
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Plane& plane)
+{
+    os << "{ length: " << plane.getLength() <<  " width: " << plane.getWidth() \
+        << " Area: " << plane.getAreaOfPlane() << " }";
+
+    return os;
+}
+
+inline bool operator<(const Plane& lhs, const Plane& rhs)
+{
+    return (lhs.getLength() < rhs.getLength() && lhs.getWidth() < rhs.getWidth() && \
+                lhs.getAreaOfPlane() < rhs.getAreaOfPlane());
+}
+
+inline bool operator>(const Plane& lhs, const Plane& rhs)
+{
+    return (lhs.getLength() > rhs.getLength() && lhs.getWidth() > rhs.getWidth() && \
+                lhs.getAreaOfPlane() > rhs.getAreaOfPlane());
+}
+
+inline bool operator==(const Plane& lhs, const Plane& rhs)
+{
+    return (lhs.getLength() == rhs.getLength() && lhs.getWidth() == rhs.getWidth() && \
+                lhs.getAreaOfPlane() == rhs.getAreaOfPlane());
+}
+
+inline bool operator!=(const Plane& lhs, const Plane& rhs)
+{
+    return !(lhs == rhs);
+}
+
+inline bool operator<=(const Plane& lhs, const Plane& rhs)
+{
+    return ((lhs < rhs) || (lhs == rhs));
+}
+
+inline bool operator>=(const Plane& lhs, const Plane& rhs)
+{
+    return ((lhs > rhs) || (lhs == rhs));
+}
 
 #endif //__PLANE_HPP__
