@@ -1,46 +1,30 @@
 #include <iostream>
-class Foo;
+#include "Foo.hpp"
+#include "Bar.hpp"
 
-class Bar
+void someFunc()
 {
-    public:
-        Bar(int data = 0): data_(data){};
-        ~Bar(){};
-        void someFunc();
-    private:
-        int data_;
-};
-
-class Foo
-{
-    public:
-        Foo(int variable = 0) : variable_(variable) { }
-        ~Foo()= default;
-        friend int getVariable(const Foo& foo);/* Friend declaration */
-        friend void Bar::someFunc();
-    private:
-        int variable_;
-};
-
-void Bar::someFunc()
-{
-    Foo foo;
-    std::cout << foo.variable_ << std::endl;
+    Foo foo{2};
+    std::cout << "Value of foo: " << foo.getData() << std::endl;
 }
-int getVariable(const Foo& foo)
+
+std::ostream& operator<<(std::ostream& os, const Foo& foo)
 {
-    return foo.variable_;
+    os <<"Printing Foo contents: " << foo.getData();
+    return os; 
 }
+
+void NonMemberFunction();
 
 int main()
 {
     Foo foo1{};
     Foo foo2{4};
-    std::cout << "Value is: " << getVariable(foo1) << std::endl;
-    std::cout << "Value is: " << getVariable(foo2) << std::endl;
-
-    Bar bar{};
-    bar.someFunc();
-
+    someFunc();
+    std::cout << foo2 << std::endl;
+    Bar bar{6};
+    bar.combineDataFromFooAndBar(foo2);
+    NonMemberFunction();
     return 0;
 }
+
