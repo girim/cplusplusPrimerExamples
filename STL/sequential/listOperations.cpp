@@ -47,6 +47,22 @@ int main(int argc, char const *argv[])
 	printContents(listOne,"listOne");
 
 	listOne.insert(++listOne.begin(), 4, 2);
+	printContents(listOne, "listOne");
+
+	listOne.remove_if([](const int& element){
+		return (element == 2);
+	});
+	printContents(listOne);
+
+	listOne.insert(listOne.begin(), {1,2,3,4,5,6,5,6,5});
+	printContents(listOne);
+
+	listOne.unique();
+	printContents(listOne);
+
+	listOne.unique([](int first, int second){
+		return (first == (second - 1));
+	});
 	printContents(listOne);
 
 	return 0;
