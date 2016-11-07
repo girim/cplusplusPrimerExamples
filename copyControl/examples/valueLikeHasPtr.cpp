@@ -119,6 +119,7 @@ int main()
       std::cout  << "hasPtr_1 string is : " << hasPtr_1.getName() << std::endl;
       std::cout  << "hasPtr_3 string is : " << hasPtr_3.getName() << std::endl;
 
+      /*lValues are copied & rvalues are moved*/
       hasPtr_1 = std::move(hasPtr_2);
       HasPtr hasPtr_4(std::move(hasPtr_1));
 
