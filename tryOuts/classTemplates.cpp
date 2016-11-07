@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
+#include <deque>
 #include "stack.hpp"
 #include "specializedStack.hpp"
 #include "partialSpecializedStack.hpp"
 #include "partialSpecializationWithMultiParams.hpp"
+#include "stackWithDefaultParams.hpp"
 
 int main()
 {
@@ -62,6 +64,22 @@ int main()
     std::cout << "intChar: " << intChar.getName() << std::endl;
     std::cout << "floatPointers: " << floats.getName() << std::endl;
     std::cout << "intFloatPointers: " << intFloatPointers.getName() << std::endl;
+
+    StackD<int> intStackD;
+    intStackD.push(01);
+    intStackD.push(02);
+    intStackD.push(03);
+    intStackD.push(04);
+
+    std::cout <<intStackD;
+
+    StackD<double, std::deque<double>> doubleStackD;
+    doubleStackD.push(4.4);
+    doubleStackD.push(4.3);
+    doubleStackD.push(4.2);
+    doubleStackD.push(4.1);
+
+    std::cout << doubleStackD;
 
     return 0;
 }
