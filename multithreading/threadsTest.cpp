@@ -16,8 +16,13 @@ public:
 	{
 		for(int index = 0 ; index < count; index++)
 		{
-			std::cout << "Log class operator(): " << index << std::endl;
+		    std::cout << "Log class operator(): " << index << std::endl;
 		}
+	}
+
+	void operator()()
+	{
+		std::cout << "Overloaded operator(): " << std::endl;
 	}
 };
 
@@ -30,13 +35,18 @@ auto lambdaLog = [](int count){
 
 int main()
 {
-	std::thread threadOne(logFunction, 23);
-	std::thread threadTwo(Log(), 21);
-	std::thread threadThree(lambdaLog, 24);
+	std::thread threadOne(logFunction, 4);
+	std::thread threadTwo(Log(), 5); 
+	std::thread threadThree(lambdaLog, 6);
+	std::thread threadFour((Log()));
+	/*Braces is needed as Log() is tmp obj & treated as func declation otherwise*/
+	std::thread threadFive{Log()};
 
 	threadOne.join();
 	threadTwo.join();
 	threadThree.join();
+	threadFour.join();
+	threadFive.join();
 
 	return 0;
 }
