@@ -2,25 +2,26 @@
 #include <thread>
 #include <functional>
 #include <string>
+#include <memory>
 
 /*Function that does not take any arguments*/
 void callbackFunction_0()
 {
-	//std::cout << "callbackFunction with 0 argument called ...." << std::endl;
+	std::cout << "callbackFunction with 0 argument called ...." << std::endl;
 }
 
 void callbackFunction_1(int count)
 {
-	//std::cout << "callbackFunction with 1 argument called ...." << std::endl;
+	std::cout << "callbackFunction with 1 argument called ...." << std::endl;
 	for(int index = 0; index < count; ++index)
 		std::cout << "counter value : " << index << std::endl;
 }
 
 void callbackFunction_2(int count, std::string name)
 {
-	//std::cout << "callbackFunction with 2 arguments called ...." << std::endl;
-	//for(int index = 0; index < count; ++index)
-		//std::cout << "Running " << name << std::endl;
+	std::cout << "callbackFunction with 2 arguments called ...." << std::endl;
+	for(int index = 0; index < count; ++index)
+		std::cout << "Running " << name << std::endl;
 }
 
 /*Using function object*/
@@ -59,6 +60,11 @@ class WorkerThread
 		const unsigned count_;
 };
 
+void callbackFunction_3(std::unique_ptr<WorkerThread> wt)
+{
+	std::cout << "callbackFunction_3 is called ...." << std::endl;
+	wt->workerThreadInit();
+}
 
 int main(int argc, char const *argv[])
 {
@@ -84,15 +90,19 @@ int main(int argc, char const *argv[])
     void (WorkerThread::*ptrToWorkerThread)() = &WorkerThread::workerThreadInit;
     std::thread eigthThread(ptrToWorkerThread, &wt);
 
-	thirdThread.join();
-	secondThread.join();
-	firstThread.join();
-	//fourthThread.join();
-	fourthThread.detach();
-	fifthThread.join();
-	sixthThread.join();
-	seventhThread.join();
-	eigthThread.join();
+    std::unique_ptr<WorkerThread> wptr(new WorkerThread(2));
+    std::thread ninethThread(callbackFunction_3, std::move(wptr));
 
-	return 0;
+    thirdThread.join();
+    secondThread.join();
+    firstThread.join();
+    //fourthThread.join();
+    fourthThread.detach();
+    fifthThread.join();
+    sixthThread.join();
+    seventhThread.join();
+    eigthThread.join();
+    ninethThread.join();
+
+    return 0;
 }

@@ -3,4 +3,4 @@ SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11 -pthread")
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(concurrency)
-add_executable(parameterPassing parameterPassing.cpp)
+add_executable(spawnThreads spawnThreads.cpp)

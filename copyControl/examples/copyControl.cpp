@@ -17,7 +17,6 @@
  */
 #include <iostream>
 
-
 class Test
 {
   public :
@@ -44,8 +43,6 @@ class Test
 
 };
 
-Test someFunction(Test test);
-
 Test someFunction(Test test)
 {
     std::cout << "Inside someFunction: " << std::endl;
@@ -55,15 +52,17 @@ Test someFunction(Test test)
 int main()
 {
     Test test1;
-    Test test2(test1);     //direct initialization
+    Test test2(test1);     //direct initialization which uses copyConstructor
     Test test3  = test2;   //copy initialization
-    Test test4{test3};     //List initialization
+    /*Test test4{test3};     //List initialization
     Test test5 = {test4};  //List initialization
 
     std::cout << "Before calling someFunction: " << std::endl;
     Test test6 = someFunction(test5); //copy initialization
 
-    Test tests[2] = {test1, test2}; //copy initialization
+    Test tests[2] = {test1, test2}; //copy initialization*/
+
+    return 0;
 }
 
 

@@ -1,0 +1,3 @@
+/home/girim/github/cplusplusPrimerExamples/Initialization/CMakeFiles/edit_cache.dir
+/home/girim/github/cplusplusPrimerExamples/Initialization/CMakeFiles/rebuild_cache.dir
+/home/girim/github/cplusplusPrimerExamples/Initialization/CMakeFiles/copyControl.dir
