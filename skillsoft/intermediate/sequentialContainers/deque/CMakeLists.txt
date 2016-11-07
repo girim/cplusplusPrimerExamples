@@ -3,5 +3,5 @@ SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(skillsoft)
-add_executable(deque_element_access  ../Plane.cpp deque_element_access.cpp)
+add_executable(deque_relational_operators  deque_relational_operators.cpp)
 
