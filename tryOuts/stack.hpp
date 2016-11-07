@@ -1,6 +1,10 @@
 #include <vector>
 #include <cassert>
 
+/* Forward declared the stack */
+template<typename T> class Stack;
+template<typename T> std::ostream& operator<<(std::ostream&, const Stack<T>& st);
+
 template<typename T>
 class Stack
 {
@@ -13,10 +17,22 @@ class Stack
         void displayContents(std::ostream& os) const;
         bool empty();
 
-        friend std::ostream& operator<<(std::ostream& os, const Stack<T>& st)
+        /* Below is the ordinary function */
+        /* friend std::ostream& operator<<(std::ostream& os, const Stack<T>& st)
         {
             st.displayContents(os);
-        }
+        } */
+        
+        /* Below declares a Non-Template friend */
+        //friend std::ostream& operator<<(std::ostream& os, const Stack<T>& st);
+
+        /* Below is the function template */
+        /* template<typename U>
+        friend std::ostream& operator<<(std::ostream& os, const Stack<U>& st); */
+
+        friend std::ostream& operator<< <T> (std::ostream& os, const Stack<T>& st); 
+
+
     private:
         std::vector<T> container_;
 };
@@ -60,4 +76,16 @@ void Stack<T>::displayContents(std::ostream& os) const
         os << "|" << *iter << "|" << std::endl;
 
     os << std::endl;
+}
+
+/* template<typename U>
+std::ostream& operator<<(std::ostream& os, const Stack<U>& st)
+{
+    st.displayContents(os);
+} */
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Stack<T>& st)
+{
+    st.displayContents(os);
 }
