@@ -24,7 +24,7 @@ Plane& Plane::operator=(const Plane& plane)
 
 Plane::Plane(Plane&& plane) noexcept
 {
-    //std::cout << "Plane move-constructor" << std::endl;
+    std::cout << "Plane move-constructor" << std::endl;
     this->length_ = plane.length_;
     this->width_  = plane.width_;
 }
