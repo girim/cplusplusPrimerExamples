@@ -1,3 +1,6 @@
+#ifndef __STACK_HPP__
+#define __STACK_HPP__
+
 #include <vector>
 #include <cassert>
 
@@ -89,3 +92,5 @@ std::ostream& operator<<(std::ostream& os, const Stack<T>& st)
 {
     st.displayContents(os);
 }
+
+#endif //__STACK_HPP__
