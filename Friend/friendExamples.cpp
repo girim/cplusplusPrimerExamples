@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Foo.hpp"
-#include "Bar.hpp"
 
 void someFunc()
 {
