@@ -22,7 +22,8 @@ class HasPtr
 {
     public:
       //constructor
-      HasPtr(const std::string &s =  std::string("DefaultString" )) :  ptrToString(new std::string(s)), number(0), useCount(new std::size_t(1))
+      HasPtr(const std::string &s =  std::string("DefaultString" )) : \
+         ptrToString(new std::string(s)), number(0), useCount(new std::size_t(1))
       {
           std::cout << "constructor executed ...." << std::endl;
           std::cout <<"----> USE COUNT AT CONSTRUCTOR: " << *this->useCount << std::endl;
