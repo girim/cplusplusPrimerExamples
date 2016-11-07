@@ -5,11 +5,10 @@
 #include <string> 
 
 template<typename T>
-void printVectorContents(const T& container, std::string name)
+void printVectorContents(const T& vec, std::string name)
 {
-    std::cout << "Element of " << name << " is: " << std::endl;
-    for(const auto& element : container)
-        std::cout<< element << " ";
+    for(const auto& element : vec)
+        std::cout << "Element of " << name << " is: " << element << std::endl;
 
     std::cout << std::endl;
 }

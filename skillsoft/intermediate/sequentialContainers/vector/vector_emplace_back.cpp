@@ -14,8 +14,6 @@ int main()
 {
     std::vector<Plane> planeList;
     planeList.emplace_back();
-    planeList.emplace_back(1);
-    planeList.emplace_back(2, 2);
 
     printVectorContents(planeList, "planeList_1");
 
