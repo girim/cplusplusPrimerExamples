@@ -12,7 +12,7 @@ class printString
 
     void operator()(std::string text)
     {
-    	os_ << text << delimiter_;
+    	 os_ << text << delimiter_;
     }
 
   private:
@@ -25,8 +25,13 @@ int main()
 	printString printer;
 	printer("Hello!"); //Function object
 
-    printString printerTwo(std::cerr, ' ');
+  printString printerTwo(std::cerr, ' ');
 	std::vector<std::string> words = {"The", "Kite", "Runner"};
 	std::for_each(words.begin(), words.end(), printerTwo);
-    std::cout << std::endl;
+  std::cout << std::endl;
+
+  printString prt(std::cout, '#');
+  prt("Hi");
+
+  std::cout << std::endl;
 }
