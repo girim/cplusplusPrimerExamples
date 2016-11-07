@@ -144,6 +144,7 @@ int main()
       Foo foo_19(7778, hasPtr_19);
       Foo foo_20(7797, hasPtr_20);
       Foo foo_21(7747, hasPtr_21);
+      //After adding more items to vector customized swap methods were called
 
       std::vector<Foo> foolist = {foo_1, foo_2, foo_3, foo_4, foo_5, foo_6, foo_7, foo_8, foo_9, \
                                   foo_10, foo_11, foo_12, foo_13, foo_14, foo_15, foo_16, foo_17, foo_18, foo_19, foo_20, foo_21};
