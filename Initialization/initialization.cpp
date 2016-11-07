@@ -67,9 +67,10 @@ int main(int argc, char const *argv[])
 	/*4. Copy Initialization: Using = to initialize the variables*/
  	TestClass testClass_3 = 5;
  	std::cout << testClass_3 << std::endl;
- 	/*IF THE CLASS HAS SINGLE PARAMTER CONSTUCTOR we can use both direct & copy for
+ 	/*IF THE CLASS HAS SINGLE PARAMETER CONSTRUCTOR we can use either direct & copy form of
  		initiailization */
 
+	//Below is the direct Initialization also
  	TestClass testClass_4(testClass_2); //Using synthesized copy constructor
  	std::cout << testClass_4 << std::endl;
 	/*5. Value Initialization*/

@@ -6,6 +6,13 @@
 #include "partialSpecializedStack.hpp"
 #include "partialSpecializationWithMultiParams.hpp"
 #include "stackWithDefaultParams.hpp"
+#include "classTemplateArgumentDeduction.hpp"
+
+template<typename T1, typename T2>
+using IntFloat = MyClass<T1, T2>;
+
+template<typename T>
+using TwiceDouble = MyClass<T,T>;
 
 int main()
 {
@@ -53,8 +60,8 @@ int main()
     int &refToNumber3 = number3; 
     //Stack<int&> refNumbers;
 
-    MyClass<int, float> intFloat;
-    MyClass<double, double> doubleDouble;
+    IntFloat<int, float> intFloat;
+    TwiceDouble<double> doubleDouble;
     MyClass<int, char> intChar;
     MyClass<float*, float*> floats;
     MyClass<int*, float*> intFloatPointers;
@@ -73,7 +80,10 @@ int main()
 
     std::cout <<intStackD;
 
-    StackD<double, std::deque<double>> doubleStackD;
+    /* Renaming the type */
+    typedef StackD<double, std::deque<double>> DoubleStackD;
+    DoubleStackD doubleStackD;
+    
     doubleStackD.push(4.4);
     doubleStackD.push(4.3);
     doubleStackD.push(4.2);
