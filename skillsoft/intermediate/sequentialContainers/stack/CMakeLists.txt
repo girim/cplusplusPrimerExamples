@@ -4,4 +4,3 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(adaptors)
 add_executable(stack ../Cylinder.cpp stack.cpp)
-
