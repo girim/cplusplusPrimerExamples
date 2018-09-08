@@ -51,6 +51,38 @@ class Point
             return  (xHash + yHash);
         }
 
+        Point& operator++()
+        {
+            ++this->x_;
+            ++this->y_;
+
+            return *this;
+        }
+
+        Point& operator++(int)
+        {
+            this->x_++;
+            this->y_++;
+
+            return *this;
+        }
+
+        Point& operator--()
+        {
+            --this->x_;
+            --this->y_;
+
+            return *this;
+        }        
+
+        Point& operator--(int)
+        {
+            this->x_--;
+            this->y_--;
+
+            return *this;
+        }
+
         unsigned getX() const { return this->x_;};
         unsigned getY() const { return this->y_;};
 
@@ -73,6 +105,15 @@ std::ostream& operator<<(std::ostream &os, const Point& point)
 {
     os << "{x:" << point.getX() << ",y:" << point.getY() << "}";
     return os;
+}
+
+Point operator+(const Point& lhs, const Point& rhs)
+{
+    Point result{};
+    result.setX(lhs.getX() + rhs.getX());
+    result.setY(lhs.getY() + rhs.getY());
+
+    return result;
 }
 
 bool operator==(const Point& lhs, const Point& rhs)
