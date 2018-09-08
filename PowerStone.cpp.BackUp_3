@@ -1,0 +1,183 @@
+#include <iostream>
+#include <array>
+#include <vector>
+#include <list>
+#include <math.h>
+
+#define MAX_SIZE 500
+int hardnessValues[MAX_SIZE];
+std::string EOL = "\n";
+std::vector<std::array<int, 3>> stoneCombs = \
+{{3,3,3}, {3,2,3}, {3,3,2}, {2,3,3}, {3,2,2},
+ {2,2,3}, {2,3,2}, {3,3,1}, {2,2,2},
+ {2,3,1}, {3,2,1}, {1,2,3}, {2,2,1}, {1,2,2},
+ {1,3,3}, {1,3,2}, {1,3,1}, {1,2,1},
+ {3,1,3}, {3,1,2}, {3,1,1}, {2,1,3},
+ {2,1,2}, {2,1,1}, {1,1,3}, {1,1,2}, {1,1,1}};
+
+long long int findPower(int first, int second, int third)
+{
+    std::cout << "first: " << first << " second: " << second << " third:  " << third << EOL;
+
+    return pow(second, pow(first, third));
+}
+
+bool findSequence(std::vector<std::array<int, 3>>::iterator &iterToSubSeq, \
+                std::list<int>::iterator &ptr, std::list<int> &stoneline)
+{
+    bool found = false;
+    int counter = 0;
+    auto arrayIter = iterToSubSeq->begin();
+    while(arrayIter != iterToSubSeq->end())
+    {
+        if( ptr == stoneline.end())
+        {
+            counter = 0;
+            break;
+        }
+        if(*arrayIter != *ptr && counter == 0)
+        {
+            //std::cout << "if: increameting ++ptr: " << *ptr << EOL;
+            ++ptr;
+        }
+        else if(*arrayIter == *ptr)
+        {
+            ++counter;
+            ++ptr;
+            ++arrayIter;
+            //std::cout << "1st else if: counter: " << counter << " ptr: " << *ptr << EOL;
+        }
+        else if( (*arrayIter != *ptr) && counter > 0)
+        {
+            //std::cout << "2nd else if: counter: " << counter << " ptr: "  << *ptr << " arrayIter: " << *arrayIter << EOL;
+            if(counter == 3)
+            {
+                break;
+            }
+            counter = 0;
+            arrayIter = iterToSubSeq->begin();
+            //std::cout << "[[ " << *arrayIter << " , " << *(arrayIter+1) << ", " << *(arrayIter+2) << " }]" << EOL;
+        }
+
+        if(counter == 3)
+        {
+            found =  true;
+            break;
+        }
+    }
+
+    return found;
+}
+
+int solve(int numberOfStones, long long strengthOfLine)
+{
+    //std::cout << "numberOfStones: " << numberOfStones << EOL;
+    //std::cout << "strengthOfLine: " << strengthOfLine  << EOL;
+
+    std::list<int> stoneline(std::begin(hardnessValues), std::begin(hardnessValues)+numberOfStones);
+
+    std::list<int>::iterator ptr;
+    int powerSpentInBreakingStone = 0;
+    long long decreasedStrengthOfLine = 0;
+
+    while(stoneline.size() > 2)
+    {
+        //std::cout << "inside: size : " << stoneline.size()  << EOL;
+        ptr =  stoneline.begin();
+        //std::cout << "begin ptr: " << *ptr << EOL;
+        auto iter  = stoneCombs.begin();
+
+        while(iter != stoneCombs.end())
+        {
+            ptr =  stoneline.begin();
+            bool res = findSequence(iter, ptr, stoneline);
+            //std::cout << "Before if(res) res: " << res << EOL;
+            if(res)
+            {
+                auto thirdNumber = --ptr;
+                auto secondNumber = --ptr;
+                auto firstNumber = --ptr;
+                powerSpentInBreakingStone = powerSpentInBreakingStone + *(secondNumber);
+                //std::cout << "inside loop: powerSpentInBreakingStone: " << powerSpentInBreakingStone << EOL;
+                decreasedStrengthOfLine = decreasedStrengthOfLine + findPower(*firstNumber, *secondNumber, *thirdNumber);
+                //std::cout << "inside loop: decreasedStrengthOfLine: " << decreasedStrengthOfLine << EOL;
+                stoneline.erase(secondNumber);
+            }else{
+                auto copyOfStoneline = stoneline;
+                auto iterToBeRemoved  = (++stoneline.begin());
+                //std::cout << "iterToBeRemoved: " << *iterToBeRemoved << EOL;
+
+                int size =  (copyOfStoneline.size() - 2);
+                //std::cout << "counter: " << counter << EOL;
+                stoneline.erase(iterToBeRemoved);
+                //std::cout << "nextIter: " << *nextIter << EOL;
+                int counter = 0;
+                int offset = 2;
+
+                while(counter < size)
+                {
+                    ptr = stoneline.begin();
+
+                    auto result = findSequence(iter, ptr, stoneline);
+                    //std::cout << "result: " << result << EOL;
+
+                    if(result)
+                    {
+                        std::cout << "Found one combination " << EOL;
+                        auto thirdNumber = --ptr;
+                        auto secondNumber = --ptr;
+                        auto firstNumber = --ptr;
+                        powerSpentInBreakingStone = powerSpentInBreakingStone + *(secondNumber);
+                        decreasedStrengthOfLine = decreasedStrengthOfLine + findPower(*firstNumber, *secondNumber, *thirdNumber);
+                        stoneline.erase(secondNumber);
+                        copyOfStoneline = stoneline;
+                        break;
+                    }else{
+                        //std::cout << "ELSE pARt" << EOL;
+                        stoneline = copyOfStoneline;
+                        auto nextIter = stoneline.begin();
+                        int pos = 0;
+                        while(pos < (counter + offset))
+                        {
+                            ++nextIter;
+                            ++pos;
+                        }
+
+                        ++counter;
+                        stoneline.erase(nextIter);
+                        std::cout << "nextIter end: " << *nextIter << EOL;
+                    }
+                }
+                stoneline = copyOfStoneline;
+
+                ++iter;
+            }
+        }
+    }
+
+    //std::cout << "out of loop: " << EOL;
+    //std::cout << "powerSpentInBreakingStone: " << powerSpentInBreakingStone << EOL;
+    //std::cout << "decreasedStrengthOfLine: " << decreasedStrengthOfLine << EOL;
+    int minimumPoweReq = (strengthOfLine - decreasedStrengthOfLine) +  powerSpentInBreakingStone;
+    //std::cout << "Minmum power required: " << minimumPoweReq << EOL;
+
+    return minimumPoweReq;
+}
+
+int main()
+{
+    int numberOfStones  = 0;
+    int strengthOfLine = 0;
+
+    std::cin >> numberOfStones >> strengthOfLine;
+
+    for(int index = 0; index < numberOfStones; index++)
+    {
+        std::cin >> hardnessValues[index];
+    }
+
+    int ans = solve(numberOfStones, strengthOfLine);
+    std::cout << ans << EOL;
+   
+    return 0;
+}
