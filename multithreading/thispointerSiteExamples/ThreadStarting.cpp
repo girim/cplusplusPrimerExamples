@@ -3,6 +3,7 @@
 
 void startThreadFunction()
 {
+    std::cout << "startThreadFunc: " << std::this_thread::get_id() << "\n";
     for(auto index = 0; index < 10; index++)
     {
         std::cout << "[New Thread] Running....." << "\n";
@@ -41,6 +42,10 @@ int main(int argc, char const *argv[])
     {
         std::cout << "[Main Thread] Running....." << "\n";
     }
+
+    std::cout << "Thread id(threadOne): " << threadOne.get_id() << "\n";
+    std::cout << "Thread id(threadTwo): " << threadTwo.get_id() << "\n";
+    std::cout << "Thread id(threadThree): " << threadThree.get_id() << "\n";
 
     threadOne.join();
     threadTwo.join();
