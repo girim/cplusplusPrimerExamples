@@ -4,6 +4,7 @@
 #include <list>
 #include <math.h>
 
+#define someThing
 #define MAX_SIZE 500
 int hardnessValues[MAX_SIZE];
 std::vector<std::array<int, 3>> stoneCombs = \
@@ -182,4 +183,8 @@ int main()
     std::cout << ans << EOL;
    
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1ab844c... staticFileCommit
