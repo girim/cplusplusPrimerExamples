@@ -6,10 +6,20 @@
 class Point
 {
     public:
-        explicit Point(unsigned x= 0, unsigned y = 0) : x_(x), y_(y)
+        explicit Point(): x_(0), y_(0)
+        {
+
+        }
+        explicit Point(unsigned x, unsigned y) : x_(x), y_(y)
         {
             //std::cout << "Point constructor called " << std::endl;
         }
+
+        explicit Point(unsigned n): x_(n), y_(n)
+        {
+            
+        }
+
         ~Point()
         {
             //std::cout << "Point destructor called" << std::endl;
@@ -29,6 +39,16 @@ class Point
             this->y_ = point.y_;
 
             return *this;
+        }
+
+        std::size_t operator()(const Point& pt) const
+        {
+            std::size_t xHash = std::hash<unsigned>()(pt.getX());
+            std::size_t yHash = std::hash<unsigned>()(pt.getY());
+
+            //std::cout << "xHash: " << xHash  << " yHash: " << yHash << "\n";
+            //std::cout << "FinalHash: " << (xHash + yHash) << "\n"; 
+            return  (xHash + yHash);
         }
 
         unsigned getX() const { return this->x_;};
@@ -57,6 +77,7 @@ std::ostream& operator<<(std::ostream &os, const Point& point)
 
 bool operator==(const Point& lhs, const Point& rhs)
 {
+    //std::cout << "comparing two points: " << lhs << " " << rhs << "\n";
     return ((lhs.getX() == rhs.getX()) && (lhs.getY() == rhs.getY()));
 }
 
