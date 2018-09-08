@@ -20,20 +20,21 @@ void printSequentialContainer(const Container& cont)
 template<typename T>
 void printSequentialContainer(const std::forward_list<T>& list)
 {
+    std::cout << "[ ";
     if(!list.empty())
     {
         auto size = std::distance(list.begin(), list.end());
         auto iter = list.begin();
 
         int count = 0;
-        std::cout << "[ ";
 
         while(count < (size - 1))
         {
             std::cout << *iter++ << ", ";
             ++count;
         }
-        std::cout << *iter << " ]" << std::endl;
+        std::cout << *iter;
     }
+    std::cout << " ]" << std::endl;
 }
 #endif
