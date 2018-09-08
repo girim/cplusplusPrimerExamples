@@ -6,7 +6,7 @@ void printAssocContainer(const Cont& cont)
 {
     if(cont.empty())
     {
-        std::cout <<" [ ] " << "\n";
+        std::cout <<"[ empty ]" << "\n";
         return;
     }
     for(auto iter = cont.begin(); iter != cont.end(); ++iter)
