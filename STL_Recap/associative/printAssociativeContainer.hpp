@@ -1,5 +1,6 @@
 #ifndef __PRINT_ASSOCIATIVE_CONT_HPP__
 #define __PRINT_ASSOCIATIVE_CONT_HPP__
+#include <set>
 
 template<typename Cont>
 void printAssocContainer(const Cont& cont)
@@ -14,6 +15,22 @@ void printAssocContainer(const Cont& cont)
         std::cout << "[ Key: " << iter->first << " Value: " << iter->second << " ]\n";
     }
     std::cout << std::endl;
+}
+
+/* Use template specialization */
+template<typename T, typename U = std::less<T>>
+void printAssocContainer(const std::set<T, U>& cont)
+{
+    std::cout << "[ ";
+    if(!cont.empty())
+    {
+        auto last = std::prev(cont.cend());
+        for(auto iter = cont.cbegin(); iter != cont.cend(); ++iter)
+        {
+            (iter == last) ? (std::cout <<  *iter) : (std::cout <<  *iter << ", ");
+        }
+    }
+    std::cout << " ]" << std::endl;
 }
 
 template<typename T>
