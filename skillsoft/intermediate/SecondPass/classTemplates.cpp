@@ -90,5 +90,20 @@ int main(int argc, char const *argv[])
     pointsStack.push(pt2);
     pointsStack.printStack();
 
+    Stack<double> dStack{};
+
+    try
+    {
+        dStack.top();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    dStack.push(2.0);
+    dStack.push(5.6);
+    dStack.printStack();
+
     return 0;
 }

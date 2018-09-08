@@ -41,6 +41,13 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "set": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "condition_variable": "cpp",
+        "ctime": "cpp",
+        "memory": "cpp",
+        "mutex": "cpp",
+        "ratio": "cpp"
     }
 }
