@@ -48,6 +48,8 @@
         "ctime": "cpp",
         "memory": "cpp",
         "mutex": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "atomic": "cpp",
+        "future": "cpp"
     }
 }
