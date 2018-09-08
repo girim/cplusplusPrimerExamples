@@ -3,4 +3,4 @@ SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++0x -pthread")
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(basics)
-add_executable(synthesizedAsDeleted synthesizedAsDeleted.cpp)
+add_executable(copyConstructor copyConstructor.cpp)

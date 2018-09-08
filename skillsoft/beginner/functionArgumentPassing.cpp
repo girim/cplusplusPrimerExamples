@@ -18,6 +18,23 @@ void testFunction(double *passByAddress)
     *passByAddress = 90;
 }
 
+void addingNewFunction()
+{
+    std::cout << "this is the new function: " << std::endl;
+}
+
+void someTestFunction()
+{
+    std::cout << "someTestFunction" << std::endl;
+}
+
+void testFunctionTwo()
+{
+    //do nothing
+    std::cout << "Inside testFunctionTwo...." << std::endl;
+}
+
+
 int main(int argc, char* argv[])
 {
     int passByValue = 0;

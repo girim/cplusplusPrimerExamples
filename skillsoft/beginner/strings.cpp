@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 
     const char* arrayOfStrings[] = {"c++", "javascript", "java"};
     const char first = *(*(arrayOfStrings + 1) + 0);
-    std::cout << "fist: " << first << std::endl;
+    std::cout << "first: " << first << std::endl;
     std::cout << "arrayOfStrings[0]: " << *(arrayOfStrings + 0) << std::endl;
 
     /* 4.from c-string  --> string(const char* s) */

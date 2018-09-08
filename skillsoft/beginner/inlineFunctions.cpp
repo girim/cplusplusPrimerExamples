@@ -7,6 +7,11 @@ inline int square(int x)
     return (x * x);
 }
 
+inline void someOtherFunction()
+{
+    std::cout << "this is inline function " << std::endl;
+}
+
 int main(int argc, char* argv[])
 {
     int x = 5;

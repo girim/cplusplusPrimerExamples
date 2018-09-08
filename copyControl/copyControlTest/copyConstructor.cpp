@@ -79,10 +79,10 @@ int main(int argc, char const *argv[])
 	std::cout << square_1 << std::endl;
 
 	SquareShape square_2(square_1); //direct initailization using copy-constuctor
-	SquareShape square_3 = square_2; //Initialization copy-initialization
+	SquareShape square_3 = square_2; //Initialization copy-initialization using copy-constructor
 
-	square_1 = square_3;  //Assignment
-	square_1 = square_1;  //self-assignment should work properly with assignment operator
+	square_1 = square_3;  //Assignment (usese copy-assignment operator)
+	square_1 = square_1;  //self-assignment should work properly with assignment operator (usese copy-assignment operator)
 
 	SquareShape square_4{2,2};
 	SquareShape square_5{8,8};
