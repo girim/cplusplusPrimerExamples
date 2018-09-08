@@ -3,4 +3,4 @@ SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++17 -pthread")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(skillsoft)
-add_executable(FunctionTemplates FunctionTemplates.cpp)
+add_executable(simpleInheritance simpleInheritance.cpp)
